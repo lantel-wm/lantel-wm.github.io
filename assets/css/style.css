@@ -176,12 +176,46 @@ body {
     /* 辅助色作为hover颜色 */
 }
 
-/* --- 主内容区域样式 (无变化) --- */
+/* --- 主内容区域样式 --- */
 .content {
     flex-grow: 1;
+    /* 占据剩余空间 */
     padding: 40px;
+    /* 内边距 */
     overflow-y: auto;
+    /* 允许内容滚动 */
 }
+
+/* 所有的链接默认样式 */
+.content a {
+    color: #60A3D9;
+    /* 使用主色调作为链接的默认颜色 */
+    text-decoration: none;
+    /* 移除下划线 */
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    /* 添加平滑过渡效果 */
+    border-bottom: 1px solid rgba(96, 163, 217, 0.4);
+    /* 默认添加一个细微的底边框 */
+    padding-bottom: 2px;
+    /* 链接和底边框之间留一点空隙 */
+}
+
+/* 链接鼠标悬停时 */
+.content a:hover {
+    color: #C4D82F;
+    /* 悬停时变为强调色 */
+    border-bottom: 2px solid #C4D82F;
+    /* 底边框加粗并变为强调色 */
+}
+
+/* 链接被访问过后的样式 (可选) */
+.content a:visited {
+    color: #4A8BBF;
+    /* 可以稍微暗一点的蓝色，表示已访问 */
+    border-bottom: 1px dashed rgba(74, 139, 191, 0.5);
+    /* 可以改为虚线或更淡的颜色 */
+}
+
 
 .section {
     margin-bottom: 50px;
