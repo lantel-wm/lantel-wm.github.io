@@ -1,0 +1,466 @@
+/* --- 全局样式 --- */
+body {
+    font-family: 'Open Sans', sans-serif;
+    /* 主要内容字体 */
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #F7F7F7;
+    /* 柔和的浅灰色背景 */
+    color: #333333;
+    /* 标准文本颜色 */
+    min-height: 100vh;
+}
+
+.main-wrapper {
+    display: flex;
+    /* 保持 flex 用于布局内容区域，但侧边栏不再是其子元素 */
+    width: 100%;
+    max-width: 1400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    /* 柔和的阴影 */
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    /* 确保内容不溢出圆角 */
+    margin: 40px auto;
+    /* 顶部40px，左右自动居中 */
+    position: relative;
+    /* 用于后续可能需要的定位上下文 */
+    padding-left: 350px;
+    /* 关键：给主内容区域留出侧边栏的空间 */
+    box-sizing: border-box;
+    /* 确保内边距不增加总宽度 */
+}
+
+/* --- 侧边栏样式 --- */
+.sidebar {
+    width: 350px;
+    /* 侧边栏固定宽度 */
+    flex-shrink: 0;
+    background-color: #2c3e50;
+    /* 深色背景，与主色调形成对比 */
+    color: #f7f7f7;
+    padding: 30px 25px;
+    /* 增加内边距 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+
+    position: fixed;
+    /* 固定在视口中 */
+    top: 0;
+    /* 距离视口顶部0 */
+    left: 0;
+    /* 距离视口左侧0 */
+    height: 100vh;
+    /* 高度占满整个视口高度 */
+    overflow-y: auto;
+    /* 如果侧边栏内容超出视口高度，允许其自身滚动 */
+    z-index: 1000;
+    /* 确保侧边栏在其他内容之上 */
+}
+
+.profile-summary {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.profile-img {
+    width: 150px;
+    /* 头像尺寸根据侧边栏宽度调整 */
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #60A3D9;
+    /* 主色调边框 */
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.05);
+}
+
+.sidebar h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2em;
+    /* 调整字体大小 */
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.sidebar .title-tagline {
+    font-size: 1em;
+    color: #bbb;
+    margin-top: 0;
+}
+
+.navigation {
+    width: 100%;
+    /* 关键：让导航占据剩余的可用空间，将社交链接往下推 */
+    flex-grow: 1;
+    /* 允许导航区增长 */
+    margin-bottom: 40px;
+    /* 保持与社交链接的间隔 */
+    /* 移除之前的 margin-bottom 或设置为0 如果你不想导航菜单底部有额外空间 */
+    /* margin-bottom: 0; */
+}
+
+.navigation ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navigation ul li {
+    margin-bottom: 10px;
+}
+
+.navigation ul li a {
+    display: block;
+    color: #f7f7f7;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 12px 20px;
+    /* 增加内边距 */
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.navigation ul li a i {
+    margin-right: 15px;
+    /* 增加图标和文字间距 */
+    color: #C4D82F;
+    /* 辅助色图标 */
+}
+
+.navigation ul li a:hover,
+.navigation ul li a.active {
+    /* 可以通过JS添加active类 */
+    background-color: #60A3D9;
+    /* 主色调作为hover背景 */
+    color: #fff;
+}
+
+/* 社交链接 */
+.social-links {
+    /* 关键：移除 margin-top: auto;
+       让它紧随 navigation 之后，并在底部设置 padding 或 margin */
+    /* margin-top: auto; */
+    /* 移除此行 */
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    /* 增加间距 */
+    padding-top: 10px;
+    /* 增加顶部内边距 */
+    padding-bottom: 50px;
+    /* 关键：增加底部内边距，防止贴底 */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+}
+
+.social-links a {
+    color: #fff;
+    font-size: 1.8em;
+    /* 调整图标大小 */
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #C4D82F;
+    /* 辅助色作为hover颜色 */
+}
+
+/* --- 主内容区域样式 (无变化) --- */
+.content {
+    flex-grow: 1;
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.section {
+    margin-bottom: 50px;
+    display: block;
+    width: 100%;
+}
+
+.section h1 {
+    font-family: 'Poppins', sans-serif;
+    color: #60A3D9;
+    font-size: 2.5em;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section h1::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 80px;
+    height: 4px;
+    background-color: #C4D82F;
+    border-radius: 2px;
+}
+
+.section p {
+    font-size: 1.1em;
+    color: #555555;
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+.section p strong {
+    color: #333333;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #E0E0E0;
+    margin: 50px 0;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 30px;
+    border-left: 2px solid #E0E0E0;
+}
+
+.timeline-item {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -39px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    background-color: #60A3D9;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-shadow: 0 0 0 2px #C4D82F;
+}
+
+.timeline-date {
+    font-weight: 600;
+    color: #60A3D9;
+    font-size: 0.95em;
+    margin-bottom: 5px;
+}
+
+.timeline-content h3 {
+    font-family: 'Poppins', sans-serif;
+    color: #333333;
+    font-size: 1.4em;
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.timeline-content .company {
+    color: #555555;
+    font-weight: normal;
+    font-size: 0.9em;
+}
+
+.timeline-content p {
+    font-size: 1em;
+    color: #555555;
+    text-align: justify;
+}
+
+/* --- 页脚样式 (保持移除状态) --- */
+/* (你的 footer 标签已经从 index.html 移除) */
+
+/* --- 响应式设计 (无变化) --- */
+
+@media (max-width: 992px) {
+    .main-wrapper {
+        flex-direction: column;
+        margin: 20px 15px;
+        max-width: unset;
+        padding-left: 0;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 25px 20px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-summary {
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .profile-summary h2 {
+        font-size: 1.5em;
+        margin-left: 15px;
+        margin-bottom: 0;
+    }
+
+    .profile-summary .title-tagline {
+        display: none;
+    }
+
+    .sidebar .profile-img {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 0;
+    }
+
+    .navigation {
+        display: none;
+    }
+
+    .social-links {
+        margin-top: 0;
+        /* 在小屏幕下，social-links 仍需调整为不使用 margin-top: auto; */
+        padding-top: 0;
+        padding-bottom: 0;
+        /* 在小屏幕下，social-links 可能会与其他元素并排，无需额外底部内边距 */
+        border-top: none;
+    }
+
+    .content {
+        padding: 30px 20px;
+    }
+
+    .section h1 {
+        font-size: 2em;
+    }
+
+    .timeline {
+        padding-left: 20px;
+    }
+
+    .timeline-item::before {
+        left: -29px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-wrapper {
+        margin: 15px 10px;
+        border-radius: 0;
+    }
+
+    .sidebar {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 15px;
+    }
+
+    .profile-summary {
+        flex-direction: column;
+        margin-bottom: 20px;
+    }
+
+    .profile-summary h2 {
+        margin-left: 0;
+        margin-top: 10px;
+        font-size: 1.6em;
+    }
+
+    .sidebar .profile-img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .social-links {
+        gap: 15px;
+    }
+
+    .social-links a {
+        font-size: 1.6em;
+    }
+
+    .content {
+        padding: 25px 15px;
+    }
+
+    .section h1 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .section h1::after {
+        width: 60px;
+    }
+
+    .section p {
+        font-size: 1em;
+    }
+
+    hr {
+        margin: 40px 0;
+    }
+
+    .timeline-item {
+        margin-bottom: 25px;
+    }
+
+    .timeline-date {
+        font-size: 0.85em;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-wrapper {
+        margin: 10px 5px;
+    }
+
+    .sidebar {
+        padding: 15px 10px;
+    }
+
+    .profile-summary h2 {
+        font-size: 1.4em;
+    }
+
+    .sidebar .profile-img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .content {
+        padding: 20px 10px;
+    }
+
+    .section h1 {
+        font-size: 1.5em;
+    }
+
+    .section p {
+        font-size: 0.95em;
+    }
+
+    .timeline {
+        padding-left: 15px;
+    }
+
+    .timeline-item::before {
+        left: -24px;
+        width: 12px;
+        height: 12px;
+    }
+}
