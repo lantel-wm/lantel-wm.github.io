@@ -1,3 +1,5 @@
+/* style.css */
+
 /* --- 全局样式 --- */
 body {
     font-family: 'Open Sans', sans-serif;
@@ -10,6 +12,7 @@ body {
     color: #333333;
     /* 标准文本颜色 */
     min-height: 100vh;
+    /* 确保 body 至少占据整个视口高度 */
 }
 
 .main-wrapper {
@@ -17,6 +20,7 @@ body {
     /* 保持 flex 用于布局内容区域，但侧边栏不再是其子元素 */
     width: 100%;
     max-width: 1400px;
+    /* 仅在大屏幕上设置最大宽度 */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     /* 柔和的阴影 */
     background-color: #fff;
@@ -99,13 +103,10 @@ body {
 
 .navigation {
     width: 100%;
-    /* 关键：让导航占据剩余的可用空间，将社交链接往下推 */
     flex-grow: 1;
-    /* 允许导航区增长 */
+    /* 允许导航区增长，将社交链接往下推 */
     margin-bottom: 40px;
     /* 保持与社交链接的间隔 */
-    /* 移除之前的 margin-bottom 或设置为0 如果你不想导航菜单底部有额外空间 */
-    /* margin-bottom: 0; */
 }
 
 .navigation ul {
@@ -138,28 +139,34 @@ body {
     /* 辅助色图标 */
 }
 
-.navigation ul li a:hover,
-.navigation ul li a.active {
-    /* 可以通过JS添加active类 */
-    background-color: #60A3D9;
-    /* 主色调作为hover背景 */
+/* 导航链接默认和鼠标悬停样式 */
+.navigation ul li a:hover {
+    background-color: rgba(96, 163, 217, 0.7);
+    /* 主色调的半透明版本 */
     color: #fff;
+}
+
+/* 导航链接高亮样式 (通过 JS 添加 'active' 类) */
+.navigation ul li a.active {
+    background-color: #60A3D9;
+    /* 主色调作为高亮背景 */
+    color: #fff;
+    font-weight: 600;
+    /* 加粗 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    /* 增加一点阴影效果 */
 }
 
 /* 社交链接 */
 .social-links {
-    /* 关键：移除 margin-top: auto;
-       让它紧随 navigation 之后，并在底部设置 padding 或 margin */
-    /* margin-top: auto; */
-    /* 移除此行 */
     display: flex;
     justify-content: center;
     gap: 20px;
     /* 增加间距 */
-    padding-top: 10px;
+    padding-top: 25px;
     /* 增加顶部内边距 */
-    padding-bottom: 50px;
-    /* 关键：增加底部内边距，防止贴底 */
+    padding-bottom: 25px;
+    /* 增加底部内边距，防止贴底 */
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     width: 100%;
 }
@@ -186,7 +193,7 @@ body {
     /* 允许内容滚动 */
 }
 
-/* 所有的链接默认样式 */
+/* 主内容区域的所有链接默认样式 */
 .content a {
     color: #60A3D9;
     /* 使用主色调作为链接的默认颜色 */
@@ -200,7 +207,7 @@ body {
     /* 链接和底边框之间留一点空隙 */
 }
 
-/* 链接鼠标悬停时 */
+/* 主内容区域链接鼠标悬停时 */
 .content a:hover {
     color: #C4D82F;
     /* 悬停时变为强调色 */
@@ -208,7 +215,7 @@ body {
     /* 底边框加粗并变为强调色 */
 }
 
-/* 链接被访问过后的样式 (可选) */
+/* 主内容区域链接被访问过后的样式 (可选) */
 .content a:visited {
     color: #4A8BBF;
     /* 可以稍微暗一点的蓝色，表示已访问 */
@@ -245,8 +252,10 @@ body {
 
 .section p {
     font-size: 1.1em;
+    /* 默认段落字体大小 */
     color: #555555;
     text-align: justify;
+    /* PC端两端对齐 */
     margin-bottom: 15px;
 }
 
@@ -260,6 +269,7 @@ hr {
     margin: 50px 0;
 }
 
+/* --- 工作经历时间线样式 --- */
 .timeline {
     position: relative;
     padding-left: 30px;
@@ -307,33 +317,41 @@ hr {
 
 .timeline-content p {
     font-size: 1em;
+    /* 默认时间线段落字体大小 */
     color: #555555;
     text-align: justify;
+    /* PC端两端对齐 */
 }
 
-/* --- 页脚样式 (保持移除状态) --- */
-/* (你的 footer 标签已经从 index.html 移除) */
+/* --- 响应式设计 --- */
 
-/* --- 响应式设计 (无变化) --- */
-
+/* 桌面端和大尺寸平板 (小于或等于 992px) */
 @media (max-width: 992px) {
     .main-wrapper {
         flex-direction: column;
+        /* 侧边栏和内容堆叠 */
         margin: 20px 15px;
+        /* 减小外边距 */
         max-width: unset;
+        /* 取消最大宽度，让它占据更多宽度 */
         padding-left: 0;
+        /* 侧边栏不再固定在左侧，取消左边距 */
     }
 
     .sidebar {
         position: relative;
+        /* 在小屏幕上，侧边栏不再固定，而是相对定位 */
         width: 100%;
         height: auto;
+        /* 高度自适应内容 */
         padding: 25px 20px;
         flex-direction: row;
+        /* 侧边栏元素横向排列 */
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        /* 添加顶部阴影，与下方内容区分 */
     }
 
     .profile-summary {
@@ -350,6 +368,7 @@ hr {
 
     .profile-summary .title-tagline {
         display: none;
+        /* 在小屏幕上隐藏副标题 */
     }
 
     .sidebar .profile-img {
@@ -360,14 +379,13 @@ hr {
 
     .navigation {
         display: none;
+        /* 小屏幕默认隐藏导航 */
     }
 
     .social-links {
         margin-top: 0;
-        /* 在小屏幕下，social-links 仍需调整为不使用 margin-top: auto; */
         padding-top: 0;
         padding-bottom: 0;
-        /* 在小屏幕下，social-links 可能会与其他元素并排，无需额外底部内边距 */
         border-top: none;
     }
 
@@ -386,16 +404,33 @@ hr {
     .timeline-item::before {
         left: -29px;
     }
+
+    /* 优化段落文本对齐和字体大小 */
+    .section p {
+        text-align: left;
+        /* 在小屏幕上取消两端对齐，改为左对齐 */
+        font-size: 1em;
+        /* 调整字体大小，使其在小屏幕上更易读 */
+    }
+
+    .timeline-content p {
+        text-align: left;
+        /* 时间线内容也取消两端对齐 */
+        font-size: 0.95em;
+    }
 }
 
+/* 手机和平板肖像模式 (小于或等于 768px) */
 @media (max-width: 768px) {
     .main-wrapper {
         margin: 15px 10px;
         border-radius: 0;
+        /* 手机端通常移除圆角 */
     }
 
     .sidebar {
         flex-direction: column;
+        /* 侧边栏元素改为竖向排列 */
         text-align: center;
         padding: 20px 15px;
     }
@@ -426,6 +461,7 @@ hr {
 
     .content {
         padding: 25px 15px;
+        /* 进一步减小内边距 */
     }
 
     .section h1 {
@@ -437,8 +473,15 @@ hr {
         width: 60px;
     }
 
+    /* 再次强调，确保段落是左对齐并微调字体大小 */
     .section p {
-        font-size: 1em;
+        font-size: 0.95em;
+        text-align: left;
+    }
+
+    .timeline-content p {
+        font-size: 0.9em;
+        text-align: left;
     }
 
     hr {
@@ -458,9 +501,11 @@ hr {
     }
 }
 
+/* 极小屏幕手机 (小于或等于 480px) */
 @media (max-width: 480px) {
     .main-wrapper {
         margin: 10px 5px;
+        /* 最小化外边距 */
     }
 
     .sidebar {
@@ -478,14 +523,22 @@ hr {
 
     .content {
         padding: 20px 10px;
+        /* 最小化内边距 */
     }
 
     .section h1 {
         font-size: 1.5em;
     }
 
+    /* 进一步微调字体大小 */
     .section p {
-        font-size: 0.95em;
+        font-size: 0.9em;
+        text-align: left;
+    }
+
+    .timeline-content p {
+        font-size: 0.85em;
+        text-align: left;
     }
 
     .timeline {
